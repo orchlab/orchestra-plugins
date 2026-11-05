@@ -1,0 +1,17 @@
+{
+  "name": "orchestra",
+  "description": "Orchestra's plugins for Claude Code",
+  "owner": {
+    "name": "Orchestra",
+    "url": "https://orch.so"
+  },
+  "plugins": [
+    {
+      "name": "orchestra",
+      "source": "./orchestra",
+      "description": "Work with the tasks, projects, documents and conversations in your Orchestra workspaces. Orchestra adds the app to your workspaces as its own member, with your access.",
+      "version": "0.1.0",
+      "category": "productivity"
+    }
+  ]
+}

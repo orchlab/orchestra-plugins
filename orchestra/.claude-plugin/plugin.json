@@ -1,0 +1,29 @@
+{
+  "name": "orchestra",
+  "version": "0.1.0",
+  "description": "Work with the tasks, projects, documents and conversations in your Orchestra workspaces. Orchestra adds the app to your workspaces as its own member, with your access.",
+  "author": {
+    "name": "Orchestra",
+    "url": "https://orch.so"
+  },
+  "homepage": "https://orch.so",
+  "keywords": [
+    "productivity",
+    "tasks",
+    "projects",
+    "documents",
+    "collaboration"
+  ],
+  "privacyPolicyUrl": "https://orch.so/privacy-policy",
+  "supportUrl": "https://orch.so/support",
+  "documentationUrl": "https://docs.orch.so",
+  "termsOfServiceUrl": "https://orch.so/terms-of-use",
+  "mcpServers": {
+    "orchestra": {
+      "type": "http",
+      "url": "https://mcp.orch.so/mcp"
+    }
+  },
+  "license": "Apache-2.0",
+  "repository": "https://github.com/orchlab/orchestra-plugins"
+}

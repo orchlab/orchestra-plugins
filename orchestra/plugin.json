@@ -1,0 +1,118 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "orchestra",
+  "version": "0.1.0",
+  "description": "Work with the tasks, projects, documents and conversations in your Orchestra workspaces. Orchestra adds the app to your workspaces as its own member, with your access.",
+  "author": {
+    "name": "Orchestra",
+    "url": "https://orch.so"
+  },
+  "homepage": "https://orch.so",
+  "keywords": [
+    "productivity",
+    "tasks",
+    "projects",
+    "documents",
+    "collaboration"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Orchestra",
+        "shortDescription": "Your Orchestra workspaces",
+        "longDescription": "Find, read and update the tasks, projects, documents and conversations in your Orchestra workspaces. Signing in adds the app to your workspaces as its own member, with your access: what it changes is recorded as its own, with you as its owner. Disconnect it any time in Orchestra under Settings → API → Connected apps.",
+        "developerName": "Orchestra",
+        "category": "Productivity",
+        "capabilities": [
+          "Search",
+          "Read",
+          "Write"
+        ],
+        "websiteURL": "https://orch.so",
+        "privacyPolicyURL": "https://orch.so/privacy-policy",
+        "termsOfServiceURL": "https://orch.so/terms-of-use",
+        "defaultPrompt": [
+          "Show my open Orchestra tasks due this week.",
+          "Summarize the latest discussion in my Orchestra project.",
+          "Create an Orchestra task from these notes."
+        ],
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/logo.png",
+        "supportURL": "https://orch.so/support"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "List the signed-in person's open tasks",
+              "prompt": "What are my open tasks in Orchestra?",
+              "tools_triggered": [
+                "query_entities"
+              ],
+              "expected_behavior": "Lists open tasks assigned to the person, with names, status and due dates."
+            },
+            {
+              "description": "Find a project by name and summarize it",
+              "prompt": "Find the Orchestra project called Marketing and tell me what is happening there.",
+              "tools_triggered": [
+                "search_entities",
+                "get_entity",
+                "read_messages"
+              ],
+              "expected_behavior": "Finds the project, reads its description and recent messages, and summarizes them."
+            },
+            {
+              "description": "Create a task",
+              "prompt": "Create an Orchestra task named Prepare Q4 report in the Marketing project.",
+              "tools_triggered": [
+                "search_entities",
+                "create_entity"
+              ],
+              "expected_behavior": "Creates the task in that project and returns a link to it."
+            },
+            {
+              "description": "Post a message",
+              "prompt": "Post 'Draft is ready for review' in the Prepare Q4 report task.",
+              "tools_triggered": [
+                "search_entities",
+                "send_message"
+              ],
+              "expected_behavior": "Posts the message in the task's chat, authored by the app's member."
+            },
+            {
+              "description": "Read a document",
+              "prompt": "Open the Orchestra document Onboarding guide and list its sections.",
+              "tools_triggered": [
+                "search_entities",
+                "read_document"
+              ],
+              "expected_behavior": "Reads the document and lists its headings."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Unrelated question",
+              "prompt": "What is the capital of France?",
+              "expected_behavior": "Answers without calling Orchestra tools."
+            },
+            {
+              "description": "Content outside the person's access",
+              "prompt": "Show me the tasks in a workspace I am not a member of.",
+              "expected_behavior": "Says the workspace is not accessible; returns nothing from it."
+            },
+            {
+              "description": "Bulk deletion request",
+              "prompt": "Delete every task in all my Orchestra projects.",
+              "expected_behavior": "Does not delete in bulk without the person confirming each item; asks for confirmation instead."
+            }
+          ]
+        }
+      },
+      "publication": {
+        "release_notes": "First release: connect ChatGPT and Codex to Orchestra by signing in. The app works in your workspaces as its own member, with your access."
+      }
+    }
+  },
+  "license": "Apache-2.0",
+  "repository": "https://github.com/orchlab/orchestra-plugins"
+}
